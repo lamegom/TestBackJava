@@ -13,8 +13,20 @@ import javax.persistence.OneToOne;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 @Entity
 public class Gastos implements Serializable {
+
+	public Gastos() {}
+	
+	public Gastos(String descricao, Double valor, Date data, Categoria categoria) {
+		super();
+		this.descricao = descricao;
+		this.valor = valor;
+		this.data = data;
+		this.categoria = categoria;
+	}
 
 	/**
 	 * 
@@ -23,6 +35,7 @@ public class Gastos implements Serializable {
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
+	
 	private Long codigousuario;
 
 	private String descricao;
@@ -35,6 +48,7 @@ public class Gastos implements Serializable {
 	 
 	 @OneToOne(fetch = FetchType.LAZY)
 	 @JoinColumn(name = "id")
+	 @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 	 private Categoria categoria;
 	 
 	 

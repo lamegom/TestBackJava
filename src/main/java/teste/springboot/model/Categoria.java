@@ -1,16 +1,21 @@
 package teste.springboot.model;
 
-import java.util.List;
-
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
+
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Entity
 public class Categoria {
+
+	public Categoria() {}
+	
+	public Categoria( String nome) {
+		super();
+		this.nome = nome;
+	}
 
 	/**
 	 * 
@@ -19,22 +24,23 @@ public class Categoria {
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
+	@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 	public Long id;
 	
 	public String nome;
 	
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "categoria")
-    private List<Gastos> gastos;
-	
-	
-
-	public List<Gastos> getGastos() {
-		return gastos;
-	}
-
-	public void setGastos(List<Gastos> gastos) {
-		this.gastos = gastos;
-	}
+//	@OneToMany(fetch = FetchType.LAZY, mappedBy = "categoria")
+//    private List<Gastos> gastos;
+//	
+//	
+//
+//	public List<Gastos> getGastos() {
+//		return gastos;
+//	}
+//
+//	public void setGastos(List<Gastos> gastos) {
+//		this.gastos = gastos;
+//	}
 
 	public Long getId() {
 		return id;
